@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: moeda_estudantil
+  
+  datasource:
+    url: jdbc:postgresql://${SPRING_DATASOURCE_HOSTNAME}:${SPRING_DATASOURCE_PORT}/${SPRING_DATASOURCE_DBNAME}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  # Hibernate
+  jpa:
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  
+  sql:
+    init:
+      mode: always
+
+# SpringDOC
+springdoc:
+  api-docs:
+    path: /docs
+  swagger-ui:
+    path: /swagger
+
+# Logging Configuration
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+            BasicBinder: TRACE
+    springframework: DEBUG
+
+# Server
+server:
+  port: 8081
