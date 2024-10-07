@@ -1,0 +1,98 @@
+@startuml
+class Usuario {
+  +String login
+  +String senha
+  +void autenticar()
+  +void cadastrar()
+}
+
+class Aluno {
+  +String nome
+  +String email
+  +String cpf
+  +String rg
+  +String endereco
+  +int saldoMoedas
+  +Instituicao instituicao
+  +Aluno(String nome, String email, String cpf, String rg, String endereco)
+  +void consultarSaldo()
+  +void resgatarVantagem(Vantagem vantagem)
+}
+
+class Professor {
+  +String nome
+  +String cpf
+  +int saldoMoedas
+  +Instituicao instituicao
+  +void enviarMoedas(Aluno aluno, int quantidade, String motivo)
+  +void consultarSaldo()
+}
+
+class EmpresaParceira {
+  +String nome
+  +String email
+  +String cnpj
+  +void cadastrarVantagem(Vantagem vantagem)
+}
+
+class Instituicao {
+  +String nome
+  +String endereco
+}
+
+class Vantagem {
+  +String descricao
+  +int custoEmMoedas
+  +String foto
+  +EmpresaParceira empresa
+  +void gerarCupom(Aluno aluno)
+}
+
+class Transacao {
+  +Professor professor
+  +Aluno aluno
+  +int quantidade
+  +String motivo
+  +Date data
+}
+
+class Moeda {
+  +int total
+  +void adicionarMoedas(int quantidade)
+  +void subtrairMoedas(int quantidade)
+}
+
+class Sistema {
+  +void distribuirMoedas(Professor professor)
+}
+
+class Notificacao {
+  +void notificarRecebimentoMoedas(Aluno aluno, int quantidade)
+  +void notificarResgateVantagem(Aluno aluno, EmpresaParceira empresa, Cupom cupom)
+}
+
+class Cupom {
+  +String codigo
+  +Vantagem vantagem
+  +Aluno aluno
+  +void gerarCodigoUnico()
+}
+
+Usuario <|-- Aluno
+Usuario <|-- Professor
+Usuario <|-- EmpresaParceira
+
+Aluno --> Instituicao
+Professor --> Instituicao
+Professor --> Transacao
+Aluno --> Transacao
+EmpresaParceira --> Vantagem
+Aluno --> Moeda
+Professor --> Moeda
+Aluno --> Vantagem
+Transacao --> Moeda
+Sistema --> Professor
+Notificacao --> Aluno
+Notificacao --> EmpresaParceira
+Vantagem --> Cupom
+@enduml
