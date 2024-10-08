@@ -1,37 +1,44 @@
 @startuml
-left to right direction
 
-actor "Aluno" as Aluno
-actor "Professor" as Professor
-actor "Empresa Parceira" as Empresa
-actor "Sistema" as Sistema
+actor "Aluno" as aluno
+actor "Professor" as professor
+actor "Empresario Parceiro" as empresario
+actor "Secretaria" as secretaria
+"Usuario" as usuario
 
-usecase "Cadastrar Aluno" as CadastrarAluno
+usecase "Cadastrar Informações" as CadastrarInfo
 usecase "Autenticar no Sistema" as Autenticar
 usecase "Resgatar Vantagens" as ResgatarVantagens
-usecase "Consultar Saldo e Transações" as ConsultarSaldoAluno
-usecase "Enviar Moedas para Aluno" as EnviarMoedas
+usecase "Consultar Saldo e Transações" as ConsultarSaldo
+usecase "Enviar Moedas" as EnviarMoedas
 usecase "Cadastrar Empresa" as CadastrarEmpresa
 usecase "Cadastrar Vantagens" as CadastrarVantagens
-usecase "Consultar Saldo e Transações (Professor)" as ConsultarSaldoProfessor
-usecase "Enviar Notificação de Moedas para Aluno" as EnviarNotificacaoMoedas
-usecase "Enviar Notificação de Cupom para Empresa e Aluno" as EnviarNotificacaoCupom
+usecase "Enviar Notificação de Moedas" as EnviarNotificacaoMoedas
+usecase "Enviar Notificação de Cupom" as EnviarNotificacaoCupom
 usecase "Selecionar Instituição de Ensino" as SelecionarInstituicao
 
-Aluno --> CadastrarAluno
-Aluno --> Autenticar
-Aluno --> ResgatarVantagens
-Aluno --> ConsultarSaldoAluno
-Aluno --> SelecionarInstituicao
+aluno --|> usuario
+professor --|> usuario
+empresario --|> usuario
+usuario --> Autenticar
 
-Professor --> EnviarMoedas
-Professor --> ConsultarSaldoProfessor
-Professor --> Autenticar
 
-Empresa --> CadastrarEmpresa
-Empresa --> CadastrarVantagens
-Empresa --> Autenticar
+aluno --> CadastrarInfo
+aluno --> ResgatarVantagens
+aluno --> ConsultarSaldo
+aluno --> SelecionarInstituicao
 
-Sistema --> EnviarNotificacaoMoedas
-Sistema --> EnviarNotificacaoCupom
+professor --> EnviarMoedas
+professor --> ConsultarSaldo
+EnviarMoedas --> aluno
+
+empresario --> CadastrarEmpresa
+empresario --> CadastrarVantagens
+
+secretaria --> EnviarNotificacaoMoedas
+secretaria --> EnviarNotificacaoCupom
+EnviarNotificacaoMoedas --> aluno
+EnviarNotificacaoCupom --> empresario
+EnviarNotificacaoCupom --> aluno
+
 @enduml
