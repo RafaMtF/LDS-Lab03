@@ -7,7 +7,8 @@ component "Frontend" {
 }
 
 component "<<backend>> SpringBoot" as SB {
-[Empresa]
+[EmpresaParceira]
+[Notificacao]
 [Professor]
 [Aluno]
 [Usuario]
