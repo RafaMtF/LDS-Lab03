@@ -78,8 +78,8 @@ Usuario <|-- EmpresaParceira
 Professor -- Instituicao
 Professor --o Transacao
 Aluno --o Transacao
-EmpresaParceira -- Vantagem
-Aluno -- Vantagem
+EmpresaParceira --o Vantagem
+Aluno --o Cupom
 Notificacao -- Aluno
 Notificacao -- EmpresaParceira
 Vantagem -- Cupom
