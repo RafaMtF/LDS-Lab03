@@ -1,0 +1,29 @@
+@startuml
+interface "REST" as R1
+interface "TCP/IP" as T1
+
+component "Frontend" {
+   component "Swagger" as SW
+}
+
+component "<<backend>> SpringBoot" as SB {
+[Empresa]
+[Professor]
+[Aluno]
+[Usuario]
+[Instituicao]
+[Transacao]
+[Vantagem]
+[Cupom]
+}
+
+database "PostgreSQL" as PG {
+}
+
+SB -up- R1
+SW <.. R1 
+
+T1 - PG
+SB -right-> T1
+
+@enduml
