@@ -3,11 +3,8 @@
 actor "Aluno" as aluno
 actor "Professor" as professor
 actor "Empresario Parceiro" as empresario
-actor "Secretaria" as secretaria
-"Usuario" as usuario
 
 usecase "Cadastrar Informações" as CadastrarInfo
-usecase "Autenticar no Sistema" as Autenticar
 usecase "Resgatar Vantagens" as ResgatarVantagens
 usecase "Consultar Saldo e Transações" as ConsultarSaldo
 usecase "Enviar Moedas" as EnviarMoedas
@@ -15,30 +12,20 @@ usecase "Cadastrar Empresa" as CadastrarEmpresa
 usecase "Cadastrar Vantagens" as CadastrarVantagens
 usecase "Enviar Notificação de Moedas" as EnviarNotificacaoMoedas
 usecase "Enviar Notificação de Cupom" as EnviarNotificacaoCupom
-usecase "Selecionar Instituição de Ensino" as SelecionarInstituicao
+usecase "Gerar cupom"as GerarCupom
 
-aluno --|> usuario
-professor --|> usuario
-empresario --|> usuario
-usuario --> Autenticar
+aluno -- CadastrarInfo
+aluno -- ResgatarVantagens
+aluno -- ConsultarSaldo
 
+professor -- EnviarMoedas
+professor -- ConsultarSaldo
 
-aluno --> CadastrarInfo
-aluno --> ResgatarVantagens
-aluno --> ConsultarSaldo
-aluno --> SelecionarInstituicao
+empresario -- CadastrarEmpresa
+empresario -- CadastrarVantagens
 
-professor --> EnviarMoedas
-professor --> ConsultarSaldo
-EnviarMoedas --> aluno
-
-empresario --> CadastrarEmpresa
-empresario --> CadastrarVantagens
-
-secretaria --> EnviarNotificacaoMoedas
-secretaria --> EnviarNotificacaoCupom
-EnviarNotificacaoMoedas --> aluno
-EnviarNotificacaoCupom --> empresario
-EnviarNotificacaoCupom --> aluno
+EnviarMoedas ..> EnviarNotificacaoMoedas : <<include>>
+ResgatarVantagens ..> GerarCupom : <<include>>
+GerarCupom ..> EnviarNotificacaoCupom : <<include>>
 
 @enduml
