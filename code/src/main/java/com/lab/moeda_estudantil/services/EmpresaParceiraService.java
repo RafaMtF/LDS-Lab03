@@ -30,7 +30,7 @@ public class EmpresaParceiraService {
 
     @Transactional
     public EmpresaParceira createEmpresaParceira(EmpresaParceira empresaParceira) {
-        if (findById(empresaParceira.getId()) != null) {
+        if (findByNome(empresaParceira.getNome()) != null) {
             throw new RuntimeException("Empresa Parceira já cadastrada");
         }
         return empresaParceiraRepository.save(empresaParceira);

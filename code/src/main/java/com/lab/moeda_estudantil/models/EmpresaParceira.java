@@ -2,6 +2,8 @@ package com.lab.moeda_estudantil.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +23,10 @@ public class EmpresaParceira {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonProperty("nome")
     private String nome;
+
+    private String imagem;
     
     @OneToMany(mappedBy = "id")
     private List<Oferta> ofertas;

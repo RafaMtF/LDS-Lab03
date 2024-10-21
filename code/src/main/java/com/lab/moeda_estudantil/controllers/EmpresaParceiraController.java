@@ -1,6 +1,7 @@
 package com.lab.moeda_estudantil.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,7 +71,7 @@ public class EmpresaParceiraController {
     )
     @PostMapping
     public ResponseEntity<?> createEmpresaParceira(@RequestBody EmpresaParceira empresaParceira) {
-        return ResponseEntity.ok().body(empresaParceiraService.createEmpresaParceira(empresaParceira));
+        return ResponseEntity.status(HttpStatus.CREATED).body(empresaParceiraService.createEmpresaParceira(empresaParceira));
     }
 
     @Operation(summary = "Update partner company")
