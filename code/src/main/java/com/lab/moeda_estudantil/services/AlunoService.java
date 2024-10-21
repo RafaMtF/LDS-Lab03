@@ -25,6 +25,16 @@ public class AlunoService {
     }
 
     @Transactional
+    public Aluno addCoins(Long id, int coins) {
+        Aluno aluno = findById(id);
+        if (aluno == null) {
+            throw new RuntimeException("Aluno não encontrado");
+        }
+        aluno.setMoedas(aluno.getMoedas() + coins);
+        return alunoRepository.save(aluno);
+    }
+
+    @Transactional
     public Aluno createAluno(Aluno aluno) {
         if (alunoRepository.findByCpf(aluno.getCpf()) != null) {
             throw new RuntimeException("Aluno já cadastrado");

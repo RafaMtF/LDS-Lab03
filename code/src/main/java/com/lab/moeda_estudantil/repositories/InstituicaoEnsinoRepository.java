@@ -10,6 +10,7 @@ import com.lab.moeda_estudantil.models.InstituicaoEnsino;
 @Repository
 public interface InstituicaoEnsinoRepository extends JpaRepository<InstituicaoEnsino, Long> {
     
+    @SuppressWarnings("null")
     Optional<InstituicaoEnsino> findById(Long id);
 
     InstituicaoEnsino findByNome(String nome);

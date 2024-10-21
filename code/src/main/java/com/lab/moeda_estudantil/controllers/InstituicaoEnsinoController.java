@@ -4,6 +4,7 @@ import com.lab.moeda_estudantil.models.InstituicaoEnsino;
 import com.lab.moeda_estudantil.services.InstituicaoEnsinoService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +47,7 @@ public class InstituicaoEnsinoController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<InstituicaoEnsino> getInstituicaoEnsinoById(Long id) {
+    public ResponseEntity<InstituicaoEnsino> getInstituicaoEnsinoById(@PathVariable Long id) {
         InstituicaoEnsino instituicaoEnsino = instituicaoEnsinoService.findById(id);
         if (instituicaoEnsino == null) {
             return ResponseEntity.notFound().build();
@@ -60,7 +62,7 @@ public class InstituicaoEnsinoController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping("/nome/{nome}")
-    public ResponseEntity<InstituicaoEnsino> getInstituicaoEnsinoByNome(String nome) {
+    public ResponseEntity<InstituicaoEnsino> getInstituicaoEnsinoByNome(@PathVariable String nome) {
         InstituicaoEnsino instituicaoEnsino = instituicaoEnsinoService.findByNome(nome);
         if (instituicaoEnsino == null) {
             return ResponseEntity.notFound().build();
@@ -74,7 +76,7 @@ public class InstituicaoEnsinoController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PostMapping
-    public ResponseEntity<InstituicaoEnsino> createInstituicaoEnsino(InstituicaoEnsino instituicaoEnsino) {
+    public ResponseEntity<InstituicaoEnsino> createInstituicaoEnsino(@RequestBody InstituicaoEnsino instituicaoEnsino) {
         return ResponseEntity.status(HttpStatus.CREATED).body(instituicaoEnsinoService.createInstituicaoEnsino(instituicaoEnsino));
     }
 
@@ -85,7 +87,7 @@ public class InstituicaoEnsinoController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PutMapping
-    public ResponseEntity<InstituicaoEnsino> updateInstituicaoEnsino(InstituicaoEnsino instituicaoEnsino) {
+    public ResponseEntity<InstituicaoEnsino> updateInstituicaoEnsino(@RequestBody InstituicaoEnsino instituicaoEnsino) {
         InstituicaoEnsino instituicaoEnsinoUpdated = instituicaoEnsinoService.updateInstituicaoEnsino(instituicaoEnsino);
         if (instituicaoEnsinoUpdated == null) {
             return ResponseEntity.notFound().build();
@@ -100,7 +102,7 @@ public class InstituicaoEnsinoController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteInstituicaoEnsino(Long id) {
+    public ResponseEntity<Void> deleteInstituicaoEnsino(@PathVariable Long id) {
         InstituicaoEnsino instituicaoEnsino = instituicaoEnsinoService.findById(id);
         if (instituicaoEnsino == null) {
             return ResponseEntity.notFound().build();

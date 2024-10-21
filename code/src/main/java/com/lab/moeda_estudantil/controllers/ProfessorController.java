@@ -4,6 +4,7 @@ import com.lab.moeda_estudantil.models.Professor;
 import com.lab.moeda_estudantil.services.ProfessorService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +51,7 @@ public class ProfessorController {
         }
     )
     @GetMapping("/{id}")
-    public ResponseEntity<Professor> getProfessorById(Long id) {
+    public ResponseEntity<Professor> getProfessorById(@PathVariable Long id) {
         Professor professor = professorService.findById(id);
         if (professor == null) {
             return ResponseEntity.notFound().build();
@@ -65,7 +67,7 @@ public class ProfessorController {
         }
     )
     @PostMapping
-    public ResponseEntity<Professor> createProfessor(Professor professor) {
+    public ResponseEntity<Professor> createProfessor(@RequestBody Professor professor) {
         return ResponseEntity.status(HttpStatus.CREATED).body(professorService.createProfessor(professor));
     }
 
@@ -78,7 +80,7 @@ public class ProfessorController {
         }
     )
     @PutMapping
-    public ResponseEntity<Professor> updateProfessor(Professor professor) {
+    public ResponseEntity<Professor> updateProfessor(@RequestBody Professor professor) {
         Professor updatedProfessor = professorService.updateProfessor(professor);
         if (updatedProfessor == null) {
             return ResponseEntity.notFound().build();
@@ -95,12 +97,29 @@ public class ProfessorController {
         }
     )
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProfessor(Long id) {
+    public ResponseEntity<Void> deleteProfessor(@PathVariable Long id) {
         Professor professor = professorService.findById(id);
         if (professor == null) {
             return ResponseEntity.notFound().build();
         }
         professorService.deleteProfessor(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Add monthly coins to professor")
+    @ApiResponses(
+        value = {
+            @ApiResponse(responseCode = "200", description = "Professor updated"),
+            @ApiResponse(responseCode = "404", description = "Professor not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+        }
+    )
+    @PutMapping("/add-moedas-mensal/{id}")
+    public ResponseEntity<Professor> addMoedasMensal(@PathVariable Long id) {
+        Professor professor = professorService.addMoedasMensal(id);
+        if (professor == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(professor);
     }
 }

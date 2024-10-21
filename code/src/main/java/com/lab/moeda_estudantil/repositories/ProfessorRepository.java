@@ -10,6 +10,7 @@ import com.lab.moeda_estudantil.models.Professor;
 @Repository
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
 
+    @SuppressWarnings("null")
     Optional<Professor> findById(Long id);
 
 }

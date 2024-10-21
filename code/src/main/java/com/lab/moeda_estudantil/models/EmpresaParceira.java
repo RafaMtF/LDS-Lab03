@@ -1,10 +1,12 @@
 package com.lab.moeda_estudantil.models;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Pattern;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,24 +15,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Aluno {
+public class EmpresaParceira {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
+    
+    @OneToMany(mappedBy = "id")
+    private List<Oferta> ofertas;
 
-    private String email;
-
-    @Pattern(regexp = "\\d{2}[0-9]\\.\\d{2}[0-9]\\.\\d{2}[0-9]-\\d{1}[0-9]")
-    private String cpf;
-
-    private String rg;
-
-    private String endereco;
-
-    private Long moedas = 0L;
-
-    private String nomeInstituicao;
 }

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,7 +49,7 @@ public class AlunoController {
         }
     )
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAlunoById(Long id) {
+    public ResponseEntity<?> getAlunoById(@PathVariable Long id) {
         Aluno aluno = alunoService.findById(id);
         if (aluno == null) {
             return ResponseEntity.notFound().build();
@@ -92,7 +93,7 @@ public class AlunoController {
         }
     )
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAluno(Long id) {
+    public ResponseEntity<?> deleteAluno(@PathVariable Long id) {
         alunoService.deleteAluno(id);
         return ResponseEntity.noContent().build();
     }
