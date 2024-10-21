@@ -1,0 +1,111 @@
+@startuml
+
+left to right direction
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam nodesep 75
+skinparam ranksep 75
+
+entity "Usuario" as Usuario {
+    * usuario_id : int
+    --
+    login : varchar
+    senha : varchar
+    role_id : int
+}
+
+entity "Role" as Role {
+    * role_id : int
+    --
+    nome : varchar
+}
+
+entity "Aluno" as Aluno {
+    * aluno_id : int
+    --
+    nome : varchar
+    email : varchar
+    cpf : varchar
+    rg : varchar
+    endereco : varchar
+    saldo : float
+    curso_id : int
+    instituicao_id : int
+}
+
+entity "Professor" as Professor {
+    * professor_id : int
+    --
+    nome : varchar
+    cpf : varchar
+    saldo : float
+    departamento_id : int
+    instituicao_id : int
+}
+
+entity "Vantagem" as Vantagem {
+    * vantagem_id : int
+    --
+    descricao : varchar
+    custo : float
+    foto : varchar
+    empresa_id : int
+}
+
+entity "Empresa Parceira" as EmpresaParceira {
+    * empresa_id : int
+    --
+    nome : varchar
+    email : varchar
+    cnpj : varchar
+}
+
+entity "Instituicao" as Instituicao {
+    * instituicao_id : int
+    --
+    nome : varchar
+}
+
+entity "Curso" as Curso {
+    * curso_id : int
+    --
+    nome : varchar
+    instituicao_id : int
+}
+
+entity "Transacao" as Transacao {
+    * transacao_id : int
+    --
+    professor_id : int
+    aluno_id : int
+    montante : float
+    motivo : varchar
+    data : datetime
+}
+
+entity "Cupom" as Cupom {
+    * cupom_id : int
+    --
+    codigo : varchar
+    vantagem_id : int
+    aluno_id : int
+}
+
+Usuario "1" -- "N" Role
+Usuario "1" -- "1" Aluno
+Usuario "1" -- "1" Professor
+Usuario "1" -- "1" EmpresaParceira
+
+Aluno "1" -- "N" Curso
+Aluno "1" -- "1" Instituicao
+Aluno "1" -- "N" Cupom
+
+Professor "1" -- "N" Transacao
+Professor "1" -- "1" Instituicao
+
+Vantagem "1" -- "N" Cupom
+EmpresaParceira "1" -- "N" Vantagem
+Instituicao "1" -- "N" Curso
+Transacao "N" -- "1" Aluno
+
+@enduml
