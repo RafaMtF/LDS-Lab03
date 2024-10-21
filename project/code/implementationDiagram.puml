@@ -1,0 +1,21 @@
+@startuml
+node "Servidor de Aplicaçao" as S1 {
+  folder "Backend" {
+    [SpringBoot] as SB
+  }
+}
+
+node "Servidor de Banco de Dados" as S2 { 
+  folder "Banco de dados" as BD {
+    [PostgreSQL] as PG
+  }
+}
+
+node "Computador pessoal" {
+  [Browser] as B
+}
+
+SB .. B : <<TCP/IP>> port: 8080
+PG -- SB : <<TCP/IP>> port: 5432
+
+@enduml
