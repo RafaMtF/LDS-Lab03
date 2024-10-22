@@ -15,66 +15,36 @@ export default function Page() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(aluno),
+      body: JSON.stringify(empresa),
     });
-    console.log(aluno);
+    console.log(empresa);
   }
 
   useEffect(() => {
-    console.log("Aluno", aluno);
-  }, [aluno]);
+    console.log("Empresa\n", empresa);
+  }, [empresa]);
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-semibold">Criar aluno:</h1>
+      <h1 className="text-2xl font-semibold">Criar empresa:</h1>
       <form onSubmit={onSubmit}>
         <div className="flex flex-col space-y-4 mt-4">
           <input
             type="text"
             placeholder="Nome"
-            value={aluno.nome}
+            value={empresa.nome}
             className="p-2 border border-gray-300 rounded"
-            onChange={(e) => setAluno({ ...aluno, nome: e.target.value })}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={aluno.email}
-            className="p-2 border border-gray-300 rounded"
-            onChange={(e) => setAluno({ ...aluno, email: e.target.value })}
+            onChange={(e) => setEmpresa({ ...empresa, nome: e.target.value })}
           />
           <input
             type="text"
-            placeholder="CPF"
-            value={aluno.cpf}
+            placeholder="Imagem"
+            value={empresa.imagem}
             className="p-2 border border-gray-300 rounded"
-            onChange={(e) => setAluno({ ...aluno, cpf: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="RG"
-            value={aluno.rg}
-            className="p-2 border border-gray-300 rounded"
-            onChange={(e) => setAluno({ ...aluno, rg: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Endereço"
-            value={aluno.endereco}
-            className="p-2 border border-gray-300 rounded"
-            onChange={(e) => setAluno({ ...aluno, endereco: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Nome da instituição"
-            value={aluno.nomeInstituicao}
-            className="p-2 border border-gray-300 rounded"
-            onChange={(e) =>
-              setAluno({ ...aluno, nomeInstituicao: e.target.value })
-            }
+            onChange={(e) => setEmpresa({ ...empresa, imagem: e.target.value })}
           />
           <Button type="submit" className="bg-green-500">
-            Criar aluno
+            Criar empresa
           </Button>
         </div>
       </form>
