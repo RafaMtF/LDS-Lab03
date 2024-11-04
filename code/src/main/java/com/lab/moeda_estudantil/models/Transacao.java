@@ -8,26 +8,23 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Professor {
+public class Transacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-
-    @Pattern(regexp = "\\d{2}[0-9]\\.\\d{2}[0-9]\\.\\d{2}[0-9]-\\d{1}[0-9]")
-    private String cpf;
-
-    private String departamento;
-
-    private Long saldo;
-
-    private String nomeInstituicao;
-
+    private Long professorId;
+    private Long alunoId;
+    private Integer quantidadeMoedas;
+    private String motivo;
+    private LocalDateTime dataHora;
+    
 }

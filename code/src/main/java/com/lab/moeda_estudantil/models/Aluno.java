@@ -30,7 +30,7 @@ public class Aluno {
 
     private String endereco;
 
-    private Long moedas = 0L;
+    private Long saldo = 0L;
 
     private String nomeInstituicao;
 }
