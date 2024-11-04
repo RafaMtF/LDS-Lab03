@@ -1,11 +1,7 @@
 package com.lab.moeda_estudantil.controllers;
 
-import com.lab.moeda_estudantil.models.Transacao;
 import com.lab.moeda_estudantil.services.TransacaoService;
-import io.swagger.v3.oas.annotations.*;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

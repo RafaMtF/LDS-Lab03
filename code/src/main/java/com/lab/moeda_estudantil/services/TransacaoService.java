@@ -1,16 +1,14 @@
 package com.lab.moeda_estudantil.services;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import jakarta.transaction.Transactional;
 import com.lab.moeda_estudantil.models.Aluno;
 import com.lab.moeda_estudantil.models.Professor;
 import com.lab.moeda_estudantil.models.Transacao;
 import com.lab.moeda_estudantil.repositories.AlunoRepository;
 import com.lab.moeda_estudantil.repositories.ProfessorRepository;
-import com.lab.moeda_estudantil.repositories.TransacaoRepository;;
+import com.lab.moeda_estudantil.repositories.TransacaoRepository;
 
 
 @Service
