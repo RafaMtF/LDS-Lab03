@@ -7,14 +7,14 @@ export default function Page() {
   const [transacao, setTransacao] = useState({
     professorId: "",
     alunoId: "",
-    quantidade: "",
+    quantidadeMoedas: "",
     motivo: "",
   });
   const [professores, setProfessores] = useState([]);
   const [alunos, setAlunos] = useState([]);
 
   function onSubmit() {
-    fetch("http://localhost:8081/transacoes/enviar", {
+    fetch("http://localhost:8081/api/transacoes/enviar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,6 +22,7 @@ export default function Page() {
       body: JSON.stringify(transacao),
     });
     console.log(transacao);
+    window.history.back();
   }
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function Page() {
             Id do professor:
             <select
               className="p-2 border border-gray-300 rounded w-full"
-              onSelect={(e) =>
+              onChange={(e) =>
                 setTransacao({ ...transacao, professorId: e.target.value })
               }
             >
@@ -67,7 +68,7 @@ export default function Page() {
             Id do aluno:
             <select
               className="p-2 border border-gray-300 rounded w-full"
-              onSelect={(e) =>
+              onChange={(e) =>
                 setTransacao({ ...transacao, alunoId: e.target.value })
               }
             >
@@ -84,10 +85,10 @@ export default function Page() {
             <input
               type="number"
               placeholder="Quantidade de moedas a ser enviada"
-              value={transacao.quantidade}
+              value={transacao.quantidadeMoedas}
               className="p-2 border border-gray-300 rounded w-full"
               onChange={(e) =>
-                setTransacao({ ...transacao, quantidade: e.target.value })
+                setTransacao({ ...transacao, quantidadeMoedas: e.target.value })
               }
             />
           </label>
