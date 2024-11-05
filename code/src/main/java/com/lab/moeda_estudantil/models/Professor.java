@@ -5,14 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Professor {
 
     @Id
@@ -26,7 +24,7 @@ public class Professor {
 
     private String departamento;
 
-    private Long saldo;
+    private Long saldo = 0L;
 
     private String nomeInstituicao;
 
