@@ -30,7 +30,7 @@ public class AlunoService {
         if (aluno == null) {
             throw new RuntimeException("Aluno não encontrado");
         }
-        aluno.setMoedas(aluno.getMoedas() + coins);
+        aluno.setSaldo(aluno.getSaldo() + coins);
         return alunoRepository.save(aluno);
     }
 

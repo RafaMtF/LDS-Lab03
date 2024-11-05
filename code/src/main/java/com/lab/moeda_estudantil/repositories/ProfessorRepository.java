@@ -13,4 +13,6 @@ public interface ProfessorRepository extends JpaRepository<Professor, Long> {
     @SuppressWarnings("null")
     Optional<Professor> findById(Long id);
 
+    Professor findByCpf(String cpf);
+
 }

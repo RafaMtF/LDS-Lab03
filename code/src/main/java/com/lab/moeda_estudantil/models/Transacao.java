@@ -4,33 +4,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Aluno {
+public class Transacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-
-    private String email;
-
-    @Pattern(regexp = "\\d{2}[0-9]\\.\\d{2}[0-9]\\.\\d{2}[0-9]-\\d{1}[0-9]")
-    private String cpf;
-
-    private String rg;
-
-    private String endereco;
-
-    private Long saldo = 0L;
-
-    private String nomeInstituicao;
+    private Long professorId;
+    private Long alunoId;
+    private Integer quantidadeMoedas;
+    private String motivo;
+    private LocalDateTime dataHora;
+    
 }
