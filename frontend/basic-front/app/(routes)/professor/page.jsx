@@ -31,6 +31,7 @@ function Page() {
             >
               <h1 className={"text-xl font-semibold"}>{professor.nome}</h1>
               <p>{professor.nomeInstituicao}</p>
+              <p className="font-semibold">Saldo: {professor.saldo}</p>
               <div className={"flex justify-between"}>
                 <Button className={"bg-green-400 text-black"}>
                   <Link href={`/professor/${professor.id}`}>Editar</Link>
