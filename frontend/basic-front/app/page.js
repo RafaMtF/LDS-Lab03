@@ -27,6 +27,10 @@ export default function Home() {
         <Button>
           <Link href="professor">Professor</Link>
         </Button>
+
+        <Button>
+          <Link href="vantagens">Vantagens</Link>
+        </Button>
         <div></div>
       </div>
     </div>
