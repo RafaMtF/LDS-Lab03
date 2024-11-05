@@ -10,7 +10,6 @@ import com.lab.moeda_estudantil.repositories.AlunoRepository;
 import com.lab.moeda_estudantil.repositories.ProfessorRepository;
 import com.lab.moeda_estudantil.repositories.TransacaoRepository;
 
-
 @Service
 public class TransacaoService {
     @Autowired
@@ -22,36 +21,30 @@ public class TransacaoService {
     @Autowired
     private TransacaoRepository transacaoRepository;
 
-    //TODOFuturamente para envio de e-mail
-    //@Autowired
-    //private EmailService emailService; // Serviço de email fictício para notificação
+    // TODOFuturamente para envio de e-mail
+    // @Autowired
+    // private EmailService emailService; // Serviço de email fictício para
+    // notificação
 
-    public void enviarMoedas(Long professorId, Long alunoId, Integer quantidade, String motivo) {
-        Professor professor = professorRepository.findById(professorId)
+    public void enviarMoedas(Transacao transacao) {
+        Professor professor = professorRepository.findById(transacao.getProfessorId())
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
-        Aluno aluno = alunoRepository.findById(alunoId)
+        Aluno aluno = alunoRepository.findById(transacao.getAlunoId())
                 .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
 
-        if (professor.getSaldo() < quantidade) {
+        if (professor.getSaldo() < transacao.getQuantidadeMoedas()) {
             throw new RuntimeException("Saldo insuficiente para enviar moedas");
         }
 
-        professor.setSaldo(professor.getSaldo() - quantidade);
-        aluno.setSaldo(aluno.getSaldo() + quantidade);
+        professor.setSaldo(professor.getSaldo() - transacao.getQuantidadeMoedas());
+        aluno.setSaldo(aluno.getSaldo() + transacao.getQuantidadeMoedas());
 
-        Transacao transacao = new Transacao();
-        transacao.setProfessorId(professorId);
-        transacao.setAlunoId(alunoId);
-        transacao.setQuantidadeMoedas(quantidade);
-        transacao.setMotivo(motivo);
         transacao.setDataHora(LocalDateTime.now());
 
         transacaoRepository.save(transacao);
 
-        professorRepository.save(professor);
-        alunoRepository.save(aluno);
-
         // TODOEnvia notificação ao aluno
-        //emailService.enviarNotificacaoRecebimentoMoedas(aluno.getEmail(), quantidade, motivo);
+        // emailService.enviarNotificacaoRecebimentoMoedas(aluno.getEmail(), quantidade,
+        // motivo);
     }
 }

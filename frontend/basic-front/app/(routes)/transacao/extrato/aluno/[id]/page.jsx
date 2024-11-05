@@ -10,14 +10,14 @@ export default function Page(props) {
     const id = props.params.id;
 
     useEffect(() => {
-        fetch(`http://localhost:8081/extrato/aluno/${id}`)
+        fetch(`http://localhost:8081/api/extrato/aluno/${id}`)
             .then(res => res.json())
             .then(data => setTransacoes(data))
             .catch(err => console.error(err))
     }, [])
 
     return (
-        <div className={"p-8 h-[100vh]"}>
+        <div className={"p-8 m-auto w-[70vw] h-[100vh]"}>
             <div className={"flex justify-between"}>
                 <h1 className={"text-2xl font-semibold"}>Extrato do aluno</h1>
             </div>

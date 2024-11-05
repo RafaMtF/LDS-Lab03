@@ -6,20 +6,28 @@ import Link from "next/link";
 
 export default function Page(props) {
     const [transacoes, setTransacoes] = useState([])
+    const [professor, setProfessor] = useState({})
 
     const id = props.params.id;
 
     useEffect(() => {
-        fetch(`http://localhost:8081/extrato/professor/${id}`)
+        fetch(`http://localhost:8081/api/extrato/professor/${id}`)
             .then(res => res.json())
             .then(data => setTransacoes(data))
             .catch(err => console.error(err))
     }, [])
 
+    useEffect(() => {
+        fetch(`http://localhost:8081/professor/${id}`)
+            .then(res => res.json())
+            .then(data => setProfessor(data))
+            .catch(err => console.error(err))
+    }, [id])
+
     return (
         <div className={"p-8 h-[100vh]"}>
             <div className={"flex justify-between"}>
-                <h1 className={"text-2xl font-semibold"}>Extrato do professor</h1>
+                <h1 className={"text-2xl font-semibold"}>Extrato do professor {professor.nome}</h1>
             </div>
             <div className={"mt-3 p-4 grid grid-cols-3 gap-2"}>
                 {transacoes.length > 0 ? transacoes.map((transacao) => (

@@ -12,7 +12,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class ProfessorService {
-    
+
     @Autowired
     private ProfessorRepository professorRepository;
 
@@ -36,6 +36,9 @@ public class ProfessorService {
 
     @Transactional
     public Professor createProfessor(Professor professor) {
+        if (professorRepository.findByCpf(professor.getCpf()) != null) {
+            throw new RuntimeException("Professor já cadastrado");
+        }
         return professorRepository.save(professor);
     }
 
