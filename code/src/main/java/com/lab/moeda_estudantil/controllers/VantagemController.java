@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lab.moeda_estudantil.models.Oferta;
-import com.lab.moeda_estudantil.services.OfertaService;
+import com.lab.moeda_estudantil.models.Vantagem;
+import com.lab.moeda_estudantil.services.VantagemService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Oferta")
+@Tag(name = "Vantagem")
 @RestController
-@RequestMapping("/oferta")
-public class OfertaController {
+@RequestMapping("/vantagem")
+public class VantagemController {
 
     @Autowired
-    private OfertaService ofertaService;
+    private VantagemService VantagemService;
 
     @Operation(summary = "Get all offers")
     @ApiResponses(
@@ -35,8 +35,8 @@ public class OfertaController {
         }
     )
     @GetMapping
-    public ResponseEntity<?> getOfertas() {
-        return ResponseEntity.ok().body(ofertaService.findAll());
+    public ResponseEntity<?> getVantagems() {
+        return ResponseEntity.ok().body(VantagemService.findAll());
     }
 
     @Operation(summary = "Get offer by id")
@@ -48,12 +48,12 @@ public class OfertaController {
         }
     )
     @GetMapping("/{id}")
-    public ResponseEntity<?> getOfertaById(@PathVariable Long id) {
-        Oferta oferta = ofertaService.findById(id);
-        if (oferta == null) {
+    public ResponseEntity<?> getVantagemById(@PathVariable Long id) {
+        Vantagem Vantagem = VantagemService.findById(id);
+        if (Vantagem == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(oferta);
+        return ResponseEntity.ok().body(Vantagem);
     }
 
     @Operation(summary = "Create offer")
@@ -64,8 +64,8 @@ public class OfertaController {
         }
     )
     @PostMapping
-    public ResponseEntity<?> createOferta(@RequestBody Oferta oferta) {
-        return ResponseEntity.ok().body(ofertaService.createOferta(oferta));
+    public ResponseEntity<?> createVantagem(@RequestBody Vantagem Vantagem) {
+        return ResponseEntity.ok().body(VantagemService.createVantagem(Vantagem));
     }
 
     @Operation(summary = "Update offer")
@@ -77,8 +77,8 @@ public class OfertaController {
         }
     )
     @PutMapping
-    public ResponseEntity<?> updateOferta(@RequestBody Oferta oferta) {
-        return ResponseEntity.ok().body(ofertaService.updateOferta(oferta));
+    public ResponseEntity<?> updateVantagem(@RequestBody Vantagem Vantagem) {
+        return ResponseEntity.ok().body(VantagemService.updateVantagem(Vantagem));
     }
 
     @Operation(summary = "Delete offer")
@@ -90,8 +90,8 @@ public class OfertaController {
         }
     )
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteOferta(@PathVariable Long id) {
-        ofertaService.deleteOferta(id);
+    public ResponseEntity<?> deleteVantagem(@PathVariable Long id) {
+        VantagemService.deleteVantagem(id);
         return ResponseEntity.ok().build();
     }
 

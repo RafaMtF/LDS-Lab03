@@ -29,6 +29,6 @@ public class EmpresaParceira {
     private String imagem;
     
     @OneToMany(mappedBy = "id")
-    private List<Oferta> ofertas;
+    private List<Vantagem> Vantagems;
 
 }

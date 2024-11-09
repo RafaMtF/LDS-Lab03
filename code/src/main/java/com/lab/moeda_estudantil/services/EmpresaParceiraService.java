@@ -47,8 +47,8 @@ public class EmpresaParceiraService {
     @Transactional
     public void deleteEmpresaParceira(Long id) {
         if (findById(id) == null
-                || empresaParceiraRepository.findById(id).get().getOfertas().size() > 0) {
-            throw new RuntimeException("Empresa Parceira não encontrada ou possui ofertas cadastradas");
+                || empresaParceiraRepository.findById(id).get().getVantagems().size() > 0) {
+            throw new RuntimeException("Empresa Parceira não encontrada ou possui Vantagems cadastradas");
         }
         empresaParceiraRepository.deleteById(id);
     }
