@@ -8,14 +8,14 @@ function Page() {
   const [alunos, setAlunos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8081/aluno")
+    fetch("http://localhost:8081/aluno/1")
       .then((res) => res.json())
       .then((data) => setAlunos(data))
       .catch((err) => console.error(err));
   }, []);
 
   return (
-    <div className={"p-8 h-[100vh]"}>
+    <div className={"p-8"}>
       <div className={"flex justify-between"}>
         <h1 className={"text-2xl font-semibold"}>Alunos</h1>
         <Button className={"bg-green-500"}>

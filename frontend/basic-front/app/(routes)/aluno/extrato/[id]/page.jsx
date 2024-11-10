@@ -4,7 +4,7 @@ import Navigation from "@/app/components/BtnGoBack";
 import Navigator from "@/app/components/BtnGoBack";
 import React, { useEffect, useState } from "react";
 
-function page(props) {
+function Page(props) {
   const [aluno, setAluno] = useState({});
   const [extratos, setExtratos] = useState([]);
 
@@ -33,7 +33,13 @@ function page(props) {
         <h2 className="text-2xl font-semibold">Nome:</h2>
         <p className="text-lg">{aluno.nome}</p>
       </div>
-      
+      {extratos.map((extrato) => {
+        return (
+          <div key={extrato.id}>
+            <h1>{extrato.quantidaeMoedas}</h1>
+          </div>
+        )
+      })}
     </div>
   );
 }

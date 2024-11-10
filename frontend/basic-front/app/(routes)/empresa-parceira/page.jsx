@@ -1,39 +1,44 @@
 "use client";
 
-import {useState, useEffect} from 'react'
-import {Button} from "@/components/ui/button";
-import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 function Page() {
-    const [empresaParceira, setEmpresaParceira] = useState([])
+  const [empresa, setEmpresa] = useState();
 
-    useEffect(() => {
-        fetch('http://localhost:8081/empresa-parceira')
-            .then(res => res.json())
-            .then(data => setEmpresaParceira(data))
-            .catch(err => console.error(err))
-    }, [])
+  useEffect(() => {
+    fetch("http://localhost:8081/empresa-parceira/1")
+      .then((response) => response.json())
+      .then((data) => setEmpresa(data))
+      .catch((error) => console.error(error));
+  }, []);
 
-    return (
-        <div className={"p-8 h-[100vh]"}>
-            <div className={"flex justify-between"}>
-                <h1 className={"text-2xl font-semibold"}>Empresas Parceiras</h1>
-                <Button className={"bg-green-500"}>
-                    <Link href="empresa-parceira/cadastro">Criar empresa parceira</Link>
-                </Button>
+  return (
+    <div className="m-0 md:m-auto w-[100vw] md:w-[75%] h-full p-4 md:p-0 md:pt-4">
+      <h1 className="text-2xl">Vantagens criadas</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {empresa?.vantagens.map((vantagem) => {
+          return (
+            <div
+              key={vantagem.id}
+              className="border-0 rounded p-4 my-4 bg-slate-100"
+            >
+              <Image
+                src={vantagem.foto}
+                alt="Foto vantagem"
+                width={250}
+                height={75}
+              />
+              <div className="flex justify-between mt-4">
+                <p>{vantagem.descricao}</p>
+                <p>{vantagem.custoMoedas} moedas</p>
+              </div>
             </div>
-            <div className={"mt-3 p-4 grid grid-cols-3 gap-2"}>
-                {empresaParceira.length > 0 ? empresaParceira.map((aluno) => (
-                    <div key={aluno.id} className={"border-0 rounded-lg bg-slate-100 p-2"}>
-                        <h1 className={"text-xl font-semibold"}>{empresaParceira.nome}</h1>
-                        <Button className={"bg-yellow-400 text-black"}>
-                            <Link href={`/empresa-parceira/${empresaParceira.id}`}>Editar</Link>
-                        </Button>
-                    </div>
-                )) : <>Empresas não encontradas</>}
-            </div>
-        </div>
-    )
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default Page;
