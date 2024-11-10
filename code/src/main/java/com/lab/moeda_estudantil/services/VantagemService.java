@@ -14,6 +14,9 @@ import jakarta.transaction.Transactional;
 public class VantagemService {
 
     @Autowired
+    private EmpresaParceiraService EmpresaParceiraService;
+
+    @Autowired
     private VantagemRepository VantagemRepository;
 
     public List<Vantagem> findAll() {
@@ -29,6 +32,10 @@ public class VantagemService {
         if (findById(Vantagem.getId()) != null) {
             throw new RuntimeException("Vantagem já cadastrada");
         }
+        if (EmpresaParceiraService.findById(Vantagem.getIdEmpresaParceira()) == null) {
+            throw new RuntimeException("Empresa parceira não encontrada");
+        }
+        EmpresaParceiraService.findById(Vantagem.getIdEmpresaParceira()).getVantagems().add(Vantagem);
         return VantagemRepository.save(Vantagem);
     }
 
