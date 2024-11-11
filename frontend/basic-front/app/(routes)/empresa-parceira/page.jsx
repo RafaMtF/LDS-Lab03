@@ -10,7 +10,6 @@ function Page() {
     fetch("http://localhost:8081/vantagem/empresa/1")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched data:", data);
         setVantagens(Array.isArray(data) ? data : []);
       })
       .catch((error) => console.error(error));

@@ -17,7 +17,6 @@ export default function Page(props) {
       },
       body: JSON.stringify(aluno),
     });
-    console.log(aluno);
   }
 
   useEffect(() => {
@@ -34,10 +33,6 @@ export default function Page(props) {
         setAluno(data);
       });
   }, [id]);
-
-  useEffect(() => {
-    console.log("Aluno", aluno);
-  }, [aluno]);
 
   return (
     <div className="p-8">

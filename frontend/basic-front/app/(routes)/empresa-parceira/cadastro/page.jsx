@@ -17,12 +17,7 @@ export default function Page() {
       },
       body: JSON.stringify(empresa),
     });
-    console.log(empresa);
   }
-
-  useEffect(() => {
-    console.log("Empresa\n", empresa);
-  }, [empresa]);
 
   return (
     <div className="p-8">

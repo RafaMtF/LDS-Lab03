@@ -50,7 +50,6 @@ function Page() {
       body: JSON.stringify(vantagem),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
       .catch((error) => console.error(error));
 
     window.location.href = "/empresa-parceira";

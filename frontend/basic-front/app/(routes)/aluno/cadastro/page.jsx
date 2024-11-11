@@ -30,13 +30,8 @@ export default function Page() {
       },
       body: JSON.stringify(aluno),
     })
-    console.log(aluno);
-    window.history.back();
+    window.location.href = "/aluno";
   }
-
-  useEffect(() => {
-    console.log("Aluno", aluno);
-  }, [aluno]);
 
   return (
     <div className="p-8">

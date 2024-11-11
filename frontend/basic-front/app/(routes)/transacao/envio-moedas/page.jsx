@@ -21,8 +21,7 @@ export default function Page() {
       },
       body: JSON.stringify(transacao),
     });
-    console.log(transacao);
-    window.history.back();
+    window.location.href = "/transacao";
   }
 
   useEffect(() => {
@@ -38,10 +37,6 @@ export default function Page() {
       .then((data) => setAlunos(data))
       .catch((err) => console.error(err));
   }, []);
-
-  useEffect(() => {
-    console.log("Transacao", transacao);
-  }, [transacao]);
 
   return (
     <div className="p-8">
