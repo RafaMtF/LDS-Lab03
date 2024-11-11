@@ -9,7 +9,6 @@ function NavBarEmpresa({ empresa }) {
       <div className="w-[100vw] h-24 bg-orange-400 px-8">
         <div className="flex items-center justify-between h-full">
           <div className="flex items-center">
-            <Image src={empresa?.imagem} alt="Logo" width={50} height={50} />
             <h1 className="pl-4 text-4xl font-bold text-white">
               Seja bem vindo(a) {empresa?.nome}
             </h1>

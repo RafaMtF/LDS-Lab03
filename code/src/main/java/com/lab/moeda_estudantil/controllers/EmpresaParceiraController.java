@@ -51,18 +51,6 @@ public class EmpresaParceiraController {
         return ResponseEntity.ok().body(empresaParceiraService.findById(id));
     }
 
-    @Operation(summary = "Get partner company by name")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Partner company returned"),
-            @ApiResponse(responseCode = "404", description = "Partner company not found"),
-            @ApiResponse(responseCode = "500", description = "Internal server error") 
-        }
-    )
-    @GetMapping("/{nome}")
-    public ResponseEntity<?> getEmpresaParceiraByNome(@PathVariable String nome) {
-        return ResponseEntity.ok().body(empresaParceiraService.findByNome(nome));
-    }
-
     @Operation(summary = "Create partner company")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Partner company created"),

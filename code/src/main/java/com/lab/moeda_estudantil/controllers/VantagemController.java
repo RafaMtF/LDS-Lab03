@@ -1,5 +1,8 @@
 package com.lab.moeda_estudantil.controllers;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,6 +53,23 @@ public class VantagemController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getVantagemById(@PathVariable Long id) {
         Vantagem Vantagem = VantagemService.findById(id);
+        if (Vantagem == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(Vantagem);
+    }
+
+    @Operation(summary = "Get offer by partner company id")
+    @ApiResponses(
+        value = {
+            @ApiResponse(responseCode = "200", description = "Offer returned"),
+            @ApiResponse(responseCode = "404", description = "Offer not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+        }
+    )
+    @GetMapping("/empresa/{idEmpresaParceira}")
+    public ResponseEntity<?> getVantagemByEmpresaParceiraId(@PathVariable Long idEmpresaParceira) {
+        List<Vantagem> Vantagem = VantagemService.findByIdEmpresaParceira(idEmpresaParceira);
         if (Vantagem == null) {
             return ResponseEntity.notFound().build();
         }

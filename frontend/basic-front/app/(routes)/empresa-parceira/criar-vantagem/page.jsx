@@ -26,6 +26,22 @@ function Page() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (vantagem.descricao === "") {
+      alert("Digite a descrição da vantagem");
+      return;
+    }
+
+    if (vantagem.custoMoedas === 0) {
+      alert("A vantagem não pode ser gratuita");
+      return;
+    }
+
+    if (vantagem.idEmpresaParceira === 0) {
+      alert("Selecione uma empresa parceira");
+      return;
+    }
+
     fetch("http://localhost:8081/vantagem", {
       method: "POST",
       headers: {
@@ -36,6 +52,8 @@ function Page() {
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
+
+    window.location.href = "/empresa-parceira";
   }
 
   return (

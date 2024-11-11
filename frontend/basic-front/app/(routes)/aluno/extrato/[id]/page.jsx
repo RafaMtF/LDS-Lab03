@@ -1,7 +1,7 @@
 "use client";
 
-import Navigation from "@/app/components/BtnGoBack";
-import Navigator from "@/app/components/BtnGoBack";
+import Navigation from "@/components/BtnGoBack";
+import Navigator from "@/components/BtnGoBack";
 import React, { useEffect, useState } from "react";
 
 function Page(props) {

@@ -17,36 +17,12 @@ function Page() {
   return (
     <div className={"p-8"}>
       <div className={"flex justify-between"}>
-        <h1 className={"text-2xl font-semibold"}>Alunos</h1>
-        <Button className={"bg-green-500"}>
-          <Link href="aluno/cadastro">Criar aluno</Link>
-        </Button>
+        <div></div>
+        <h1 className={"text-2xl font-semibold"}>Seja Bem vindo(a)</h1>
+        <div></div>
       </div>
-      <div className={"mt-3 p-4 grid grid-cols-4 gap-2"}>
-        {alunos.length > 0 ? (
-          alunos.map((aluno) => (
-            <div
-              key={aluno.id}
-              className={"border-0 rounded-lg bg-slate-100 p-2"}
-            >
-              <h1 className={"text-xl font-semibold"}>{aluno.nome}</h1>
-              <p>{aluno.nomeInstituicao}</p>
-              <p className="font-semibold">Saldo: {aluno.saldo}</p>
-              <div className={"flex justify-between pt-5"}>
-                <Button className={"bg-green-400 text-black"}>
-                  <Link href={`/aluno/${aluno.id}`}>Editar</Link>
-                </Button>
-                <Button className={"bg-yellow-500"}>
-                  <Link href={`transacao/extrato/aluno/${aluno.id}`}>
-                    Consultar extrato
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <>Alunos não encontrados</>
-        )}
+      <div>
+        <Button><Link href={"/aluno/vantagens"}>Confira as vantagens</Link></Button>
       </div>
     </div>
   );

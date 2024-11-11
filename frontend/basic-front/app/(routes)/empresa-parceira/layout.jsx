@@ -1,7 +1,7 @@
 "use client";
 
-import NavBarAluno from "@/app/components/NavBarAluno";
-import NavBarEmpresa from "@/app/components/NavBarEmpresa";
+import NavBarAluno from "@/components/NavBarAluno";
+import NavBarEmpresa from "@/components/NavBarEmpresa";
 import React, { useEffect, useState } from "react";
 
 function Layout({ children }) {

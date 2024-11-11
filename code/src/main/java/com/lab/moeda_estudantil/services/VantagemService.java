@@ -1,10 +1,12 @@
 package com.lab.moeda_estudantil.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lab.moeda_estudantil.models.EmpresaParceira;
 import com.lab.moeda_estudantil.models.Vantagem;
 import com.lab.moeda_estudantil.repositories.VantagemRepository;
 
@@ -27,15 +29,22 @@ public class VantagemService {
         return VantagemRepository.findById(id).orElse(null);
     }
 
+    public List<Vantagem> findByIdEmpresaParceira(Long idEmpresaParceira) {
+        EmpresaParceira EmpresaParceira = EmpresaParceiraService.findById(idEmpresaParceira);
+        if (EmpresaParceira == null) {
+            throw new RuntimeException("Empresa parceira não encontrada");
+        }
+        return VantagemRepository.findAllByIdEmpresaParceira(idEmpresaParceira);
+    }
+
     @Transactional
     public Vantagem createVantagem(Vantagem Vantagem) {
-        if (findById(Vantagem.getId()) != null) {
+        if (VantagemRepository.findByDescricao(Vantagem.getDescricao()) != null) {
             throw new RuntimeException("Vantagem já cadastrada");
         }
         if (EmpresaParceiraService.findById(Vantagem.getIdEmpresaParceira()) == null) {
             throw new RuntimeException("Empresa parceira não encontrada");
         }
-        EmpresaParceiraService.findById(Vantagem.getIdEmpresaParceira()).getVantagems().add(Vantagem);
         return VantagemRepository.save(Vantagem);
     }
 
