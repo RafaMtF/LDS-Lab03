@@ -4,8 +4,25 @@ import Image from "next/image";
 
 function CardVantagem({ vantagem, aluno }) {
   const resgatarVantagem = () => {
-    
-  }
+    fetch("http://localhost:8081/api/cupons/resgatar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        alunoId: aluno.id,
+        vantagemId: vantagem.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert("Vantagem resgatada com sucesso!");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="border-0 rounded p-2 my-4 bg-slate-100">
@@ -23,7 +40,7 @@ function CardVantagem({ vantagem, aluno }) {
       </div>
       {aluno ? (
         <div className="mt-2 w-full">
-          <Button variant={"create"}>Resgatar</Button>
+          <Button variant={"create"} onClick={() => resgatarVantagem()}>Resgatar</Button>
         </div>
       ) : null}
     </div>

@@ -26,4 +26,6 @@ public class Vantagem {
 
     private Long idEmpresaParceira;
 
+    private boolean ativa = true;
+
 }

@@ -1,7 +1,6 @@
 package com.lab.moeda_estudantil.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +39,18 @@ public class VantagemController {
     @GetMapping
     public ResponseEntity<?> getVantagems() {
         return ResponseEntity.ok().body(VantagemService.findAll());
+    }
+
+    @Operation(summary = "Get all active offers")
+    @ApiResponses(
+        value = {
+            @ApiResponse(responseCode = "200", description = "List of active offers returned"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+        }
+    )
+    @GetMapping("/ativas")
+    public ResponseEntity<?> getVantagemsAtivas() {
+        return ResponseEntity.ok().body(VantagemService.findAllAtivas());
     }
 
     @Operation(summary = "Get offer by id")

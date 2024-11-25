@@ -7,7 +7,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
-import { Button } from "./ui/button";
 
 function NavBarAluno({ aluno }) {
   return (

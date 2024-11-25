@@ -37,6 +37,9 @@ public class CupomService {
             throw new RuntimeException("Saldo insuficiente para resgatar a vantagem");
         }
 
+        // Desativar a vantagem
+        vantagem.setAtiva(false);
+
         // Deduzir o saldo
         aluno.setSaldo(aluno.getSaldo() - vantagem.getCustoMoedas());
         alunoRepository.save(aluno);

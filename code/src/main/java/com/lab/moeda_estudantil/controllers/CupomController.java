@@ -17,13 +17,11 @@ public class CupomController {
     private CupomService cupomService;
 
     @PostMapping("/resgatar")
-    public ResponseEntity<Cupom> resgatarVantagem(
-            @RequestParam Long alunoId,
-            @RequestParam Long vantagemId) {
-        Cupom cupom = cupomService.resgatarVantagem(alunoId, vantagemId);
+    public ResponseEntity<Cupom> resgatarVantagem(@RequestBody CorpoResgate corpoResgate) {
+        Cupom cupom = cupomService.resgatarVantagem(corpoResgate.getAlunoId(), corpoResgate.getVantagemId());
         return ResponseEntity.ok(cupom);
     }
-    
+
     @GetMapping
     public ResponseEntity<List<Cupom>> getAllCupons() {
         List<Cupom> cupons = cupomService.getAllCupons();
@@ -34,5 +32,26 @@ public class CupomController {
     public ResponseEntity<List<Cupom>> getCuponsByAlunoId(@PathVariable Long alunoId) {
         List<Cupom> cupons = cupomService.getCuponsByAlunoId(alunoId);
         return ResponseEntity.ok(cupons);
+    }
+}
+
+class CorpoResgate {
+    private Long alunoId;
+    private Long vantagemId;
+
+    public Long getAlunoId() {
+        return alunoId;
+    }
+
+    public void setAlunoId(Long alunoId) {
+        this.alunoId = alunoId;
+    }
+
+    public Long getVantagemId() {
+        return vantagemId;
+    }
+
+    public void setVantagemId(Long vantagemId) {
+        this.vantagemId = vantagemId;
     }
 }

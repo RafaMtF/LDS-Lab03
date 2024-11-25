@@ -1,7 +1,6 @@
 package com.lab.moeda_estudantil.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +61,10 @@ public class VantagemService {
             throw new RuntimeException("Vantagem não encontrada");
         }
         VantagemRepository.deleteById(id);
+    }
+
+    public Object findAllAtivas() {
+        return VantagemRepository.findAll().stream().filter(Vantagem::isAtiva);
     }
 
 }

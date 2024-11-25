@@ -10,7 +10,7 @@ function Page() {
   const [vantagens, setVantagens] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8081/vantagem")
+    fetch("http://localhost:8081/vantagem/ativas")
       .then((res) => res.json())
       .then((data) => {
         setVantagens(data);
