@@ -18,6 +18,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         create:
           "bg-green-500 text-white hover:bg-green-600 hover:text-white w-full",
+        extrato:
+          "bg-blue-500 text-white hover:bg-blue-600 hover:text-white w-full",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "bg-yellow text-primary hover:underline",
       },

@@ -2,6 +2,15 @@
 
 import Navigation from "@/components/BtnGoBack";
 import Navigator from "@/components/BtnGoBack";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import React, { useEffect, useState } from "react";
 
 function Page(props) {
@@ -24,24 +33,42 @@ function Page(props) {
       .then((data) => {
         setExtratos(data);
       });
-  }, )
+  });
 
   return (
     <div className="w-[65vw] h-[100vh] center m-auto mt-4">
       <h1 className="text-4xl font-bold">Extrato</h1>
-      <div className="mt-4">
-        <h2 className="text-2xl font-semibold">Nome:</h2>
-        <p className="text-lg">{aluno.nome}</p>
-      </div>
+      
+      <Table>
+        <TableCaption>Extrato de moedas</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Data</TableHead>
+            <TableHead>Quantidade</TableHead>
+            <TableHead>Descrição</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {extratos.map((extrato) => {
+            return (
+              <TableRow key={extrato.id}>
+                <TableCell>{extrato.dataHora}</TableCell>
+                <TableCell>{extrato.quantidadeMoedas}</TableCell>
+                <TableCell>{extrato.motivo}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
       {extratos.map((extrato) => {
         return (
           <div key={extrato.id}>
             <h1>{extrato.quantidaeMoedas}</h1>
           </div>
-        )
+        );
       })}
     </div>
   );
 }
 
-export default page;
+export default Page;
